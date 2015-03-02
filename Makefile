@@ -11,25 +11,31 @@
 #   ---------------------------------
 #
 #   Put your desired output file name (part before the dot)
-  FILENAME = oblig_unik4270_anderig
+  FILENAME = evolution_of_multicast
 #
 #   List the markdown files in order or use `*.md` to read them
 #   in the order of file name
   INPUT_FILES = *.md
 #
 #   List the types of output you want, e.g pdf docx odt epub html5 ...
-  FILETYPES = pdf docx html5 tex
+  FILETYPES = html5
+#
+#   Formats for slides, enable one to generate a slideshow
+  REVEALJS = 1
+#
+#   Slides theme
+  SLIDETHEME = blood
 #
 #   List the filters you need from the `lib` folder
   FILTERS = includes
 #
 #   Put in the name of the file where you want your references
 #   stored. Leave empty or comment out if you don't need references.
-  REF_FILE = ref.bib
+  #REF_FILE = ref.bib
 #
 #   Title to use for the reference section title. Has no effect unless
 #   you also have a reference file
-  REF_HDR = References
+  #REF_HDR = References
 #
 #   Citation style to use, this should be a csl file.
 #   Have a look at https://zotero.org/styles for thousands of options.
@@ -46,7 +52,7 @@
 #   -----------------
 #
 #   Nesting depth in the table of contents, comment out to disable
-  TOC_DEPTH = 2
+  #TOC_DEPTH = 2
 #
 #   Convert `--` to en-dash, `---` to em-dash and `...` to ellipsis
   SMART_TYPOGRAPHY = 1
@@ -70,6 +76,8 @@ BIN_DIR = bin
 
 PANDOC_OPTS_IN =
 PANDOC_OPTS_OUT = -s
+
+COPY_LIBS =
 
 ifdef SMART_TYPOGRAPHY
   PANDOC_OPTS_IN += -S
@@ -95,14 +103,21 @@ ifdef CSL_FILE
   PANDOC_OPTS_OUT += --csl=../$(CSL_FILE)
 endif
 
+ifdef REVEALJS
+  PANDOC_OPTS_OUT += -t revealjs
+  COPY_LIBS += reveal.js
+  ifdef SLIDETHEME
+	PANDOC_OPTS_OUT += --css=../lib/reveal.js/css/theme/$(SLIDETHEME).css
+  endif
+endif
+
 PANDOC_FILTERS = $(foreach f,$(FILTERS),| ../lib/$(f) )
 
-
-.PHONY: all references $(REF_HDR_FILE) clean-ref clean
+.PHONY: all references $(REF_HDR_FILE) $(COPY_LIBS) clean-ref clean
 
 all: $(FILETYPES)
 
-$(FILETYPES): $(REF_FILE) $(REF_HDR_FILE)
+$(FILETYPES): $(REF_FILE) $(REF_HDR_FILE) $(COPY_LIBS)
 	mkdir -p $(BIN_DIR)
 	cd $(SRC_DIR); \
 	pandoc $(PANDOC_OPTS_IN) $(INPUT_FILES) $(REF_HDR_REL) ../doc.yaml -t json\
@@ -115,6 +130,10 @@ $(REF_FILE):
 $(REF_HDR_FILE):
 	mkdir -p $(BIN_DIR)
 	echo "# $(REF_HDR)" > $(REF_HDR_FILE)
+
+$(COPY_LIBS):
+	mkdir -p $(BIN_DIR)
+	cp -r lib/$@ bin/
 
 references: clean-ref $(REF_FILE)
 
