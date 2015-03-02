@@ -12,4 +12,4 @@ Early multicast backbone network
 
 ## ABILENE
 
-?
+Mostly Academic backbone network created by the "Internet2" community, retired in 2007 in favor of the upgraded Internet2 network.

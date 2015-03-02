@@ -10,15 +10,20 @@
         - unicast-encapsulated tunnels between members
         - Distance Vector Multicast Routing Protocol (DVMRP)
             - Controlled flooding, no pruning in the first years
+    - Flat topology
 
 1993
-:   100 web pages on the internet
+:   Number of web pages on the internet reaches 100
 
-Focus on flat topology
+1994
+:   Rolling stones concert broadcasted over MBone
 
+1995
+:   First symmetrical graphical interactions without any central entity.
+    MBone Links are appearing in Russia & Antarctica.
 
-~1997
-:   Requirements for inter-domain routing and hierarchical protocols creates a 
-    focus shift away from flat topology protocols.
+1998
+:   vBNS is flooded with tens of megabits of traffic during a Internet2 member
+    meeting in San Francisco.
 
-* Multicast support in MPLS (2009?)
+    Work is quickly started on rolling out PIM-SM.

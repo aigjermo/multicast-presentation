@@ -76,5 +76,5 @@ Goal is to avoid loops
 ## GLOP - Global addressing scheme
 
 Assigns address spaces to AS (265 per)
-Small space is problematic
+Small address space is problematic for large AS
 
