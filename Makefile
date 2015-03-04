@@ -18,7 +18,7 @@
   INPUT_FILES = *.md
 #
 #   List the types of output you want, e.g pdf docx odt epub html5 ...
-  FILETYPES = html5
+  FILETYPES = html
 #
 #   Formats for slides, enable one to generate a slideshow
   REVEALJS = 1
