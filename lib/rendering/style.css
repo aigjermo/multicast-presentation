@@ -35,10 +35,9 @@
     stroke: #ff7f0e;
     stroke-width: 2px;
 }
-.graph .link.tun {
+
+.graph .tunnel {
+    stroke: #ff7f0e;
+    stroke-width: 2px;
     stroke-dasharray: 5,5;
-}
-.graph .link.dbl {
-    stroke-dasharray: 5,5;
-    stroke: #ff1f0e;
 }
