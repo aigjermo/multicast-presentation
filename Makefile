@@ -24,7 +24,7 @@
   REVEALJS = 1
 #
 #   Slides theme
-  SLIDETHEME = blood
+  SLIDETHEME = league
 #
 #   List the filters you need from the `lib` folder
   FILTERS = includes
