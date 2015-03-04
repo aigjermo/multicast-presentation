@@ -11,7 +11,7 @@
 #   ---------------------------------
 #
 #   Put your desired output file name (part before the dot)
-  FILENAME = evolution_of_multicast
+  FILENAME = index
 #
 #   List the markdown files in order or use `*.md` to read them
 #   in the order of file name
