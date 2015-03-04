@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Anders Iver Gjermo (ai@gjermo.com)" />
+  <title>Evolution of multicast</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="rendering/style.css"/>
+    <link rel="stylesheet" href="reveal.js/css/theme/league.css"/>
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Evolution of multicast</h1>
+    <h2 class="author">Anders Iver Gjermo (ai@gjermo.com)</h2>
+    <h3 class="date"></h3>
+</section>
+
+<section><section id="section" class="titleslide slide level1"><h1>1988</h1></section><section id="multicast-is-old" class="slide level2">
+<h1>Multicast is old!</h1>
+</section><section id="stephen-deering" class="slide level2">
+<h1>Stephen Deering</h1>
+<p>introduces the first concrete ideas about multicast in his Ph.D. dissertation</p>
+<div class="fragment">
+<p>One year before Tim Berners-Lee’s proposals for the World Wide Web.</p>
+</div>
+</section></section>
+<section><section id="section-1" class="titleslide slide level1"><h1>1992</h1></section><section id="first-wide-scale-test" class="slide level2">
+<h1>First wide scale test</h1>
+<p>Audiocast from the IETF meeting in San Diego over MBone.</p>
+<div class="fragment">
+<p>World Wide Web still has less than 100 pages.</p>
+</div>
+</section><section id="mrouted" class="slide level2">
+<h1><code>mrouted</code></h1>
+<p>Application layer implementation running on connected workstations</p>
+<p>Traffic is routed through unicast-encapsulated tunnels between members</p>
+</section><section class="slide level2">
+
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;member&quot;, &quot;count&quot;: 6 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 6 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 1 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 2 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 7, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 10, &quot;target&quot;: 11 }
+    ],
+    &quot;tunnels&quot;: [
+        [0,1],
+        [0,7,2],
+        [0,6,10,4],
+        [1,2],
+        [2,9,3],
+        [2,8,4],
+        [4,8,5]
+    ]
+}</code></pre>
+<p>Early MBone network</p>
+</section><section id="broadcast-and-prune" class="slide level2">
+<h1>“Broadcast and prune”</h1>
+<ul>
+<li class="fragment">Source sends on all interfaces</li>
+<li class="fragment">Routers do RPF checks on incoming traffic
+<ul>
+<li class="fragment">Drop traffic if RPF fails</li>
+<li class="fragment">Or respond with prune msg</li>
+</ul></li>
+<li class="fragment">Edge/leaf discover group members through IGMP
+<ul>
+<li class="fragment">Forward traffic to members</li>
+<li class="fragment">Or respond with prune msg</li>
+</ul></li>
+<li class="fragment">Routers receiving prune msgs on all interfaces, will forward towards source</li>
+<li class="fragment">Repeat periodically</li>
+</ul>
+</section><section id="dvmrp" class="slide level2">
+<h1>DVMRP</h1>
+<p><em>Distance Vector Multicast Routing Protocol</em></p>
+<div class="fragment">
+<p>Used broadcast and prune, but:</p>
+</div>
+<div class="fragment">
+<p>no pruning at all in the beginning, and RPF checks on neighbors to select output interfaces</p>
+</div>
+</section></section>
+<section><section id="section-2" class="titleslide slide level1"><h1>1994/95</h1></section><section id="mbone-is-expanding" class="slide level2">
+<h1>MBone is expanding</h1>
+<div class="fragment">
+<p>A big concert with The Rolling Stones is broadcast</p>
+</div>
+<div class="fragment">
+<p>links appearing in Russia &amp; Antarctica</p>
+</div>
+<div class="fragment">
+<p>Hardware support &amp; new protocols</p>
+</div>
+</section><section id="pim-dm" class="slide level2">
+<h1>PIM-DM</h1>
+<p><em>Protocol Independent Multicast - Dense Mode</em></p>
+<p>Similar to DVMRP, but:</p>
+<div class="fragment">
+<ul>
+<li>Uses whatever unicast routing table is available (protocol independent).</li>
+<li>Does not do RPF checks on neighbors.</li>
+</ul>
+</div>
+</section><section id="mospf" class="slide level2">
+<h1>MOSPF</h1>
+<p><em>Multicast extensions to Open Shortest Path First</em></p>
+<div class="fragment">
+<ul>
+<li>Broadcasts group membership info within an AS.
+<ul>
+<li>Allows each router to have a complete picture.</li>
+<li>Requires more state to be maintained per router.</li>
+</ul></li>
+<li>Shortest path trees per group are build using Dijkstra.</li>
+<li>Data streams is only sent to group members.</li>
+</ul>
+</div>
+</section><section class="slide level2">
+
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;green&quot;, &quot;count&quot;: 4 },
+        { &quot;type&quot;: &quot;orange&quot;, &quot;count&quot;: 5 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 3 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 1 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 2 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 7, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 10, &quot;target&quot;: 11 }
+    ],
+    &quot;tunnels&quot;: [
+        [0,1],
+        [1,2],
+        [2,8],[3,8],
+        [4,10],
+        [5,10],
+        [5,7],
+        [5,8],
+        [6,10]
+    ]
+}</code></pre>
+<p>Two groups with MOSPF generated trees</p>
+</section></section>
+<section><section id="section-3" class="titleslide slide level1"><h1>1998</h1></section><section id="the-problem-with-dense-mode-protocols" class="slide level2">
+<h1>The problem with dense mode protocols</h1>
+<p>becomes obvious when MBone is flooded with tens of gigabits of traffic during a Internet2 member meeting in San Francisco.</p>
+<aside class="notes">
+<p>“Everyone is interested”, DDos is a feature, shutting down links makes new ones pop up elsewhere.</p>
+</aside>
+<div class="fragment">
+<p>Engineers start rolling out <em>PIM-SM</em> in response.</p>
+</div>
+</section><section id="pim-sm" class="slide level2">
+<h1>PIM-SM</h1>
+<p><em>Protocol Independent Multicast - Sparse Mode</em></p>
+<div class="fragment">
+<p>Uses (like PIM-DM) the underlying unicast routing table, but introduces the concept of a rendezvous point (RP), or core, and requires goup members to send explicit join messages.</p>
+</div>
+</section><section class="slide level2">
+
+<p>Building the receiver tree:</p>
+<ul>
+<li class="fragment">A RP is configured for each group
+<ul>
+<li class="fragment">Groups may share RP, but each group can only have one</li>
+<li class="fragment">RPs must be discovered by all routers through a bootstrap protocol</li>
+</ul></li>
+<li class="fragment">Receivers send join messages to the RP.
+<ul>
+<li class="fragment">Forwarding state is created at each router between the RP &amp; source</li>
+<li class="fragment">This forms a reverse shortest path three rooted at the RP</li>
+</ul></li>
+</ul>
+</section><section class="slide level2">
+
+<p>Sending data:</p>
+<ul>
+<li class="fragment">Each source initially sends multicast data through a unicast tunnel to the RP (“register” packets)</li>
+<li class="fragment">If the RP have forwarding state for the group (ie receivers), data is forwarded down the tree</li>
+<li class="fragment">If not, the RP may tell the source to stop transmitting</li>
+<li class="fragment">In addition, the RP may request multicast data (without tunneling) from the source.</li>
+</ul>
+</section><section id="cbt" class="slide level2">
+<h1>CBT</h1>
+<p><em>Core Based Trees</em></p>
+<div class="fragment">
+<p>Similar to PIM-SM, but:</p>
+</div>
+<div class="fragment">
+<p>Uses a single tree for all groups, resulting in less state to maintain at the cost of less optimal trees.</p>
+</div>
+<div class="fragment">
+<p>The tree is bidirectional, meaning that traffic from source to rp can be sent down the tree by any node. This avoids the same packets traveling in both directions at the cost of slightly higher complexity.</p>
+</div>
+</section></section>
+<section><section id="further-problems-with-mbone" class="titleslide slide level1"><h1>Further problems with MBone</h1></section><section class="slide level2">
+
+<p>Multicast networks have had a flat topology, built out of tunnels between nodes in different ASs, leading to a number of problems.</p>
+</section><section id="scalability" class="slide level2">
+<h1>Scalability</h1>
+<p>Large number of routes became a big problem for MBone, peaking at over 10k routes</p>
+<p>To manage larger networks, route aggregation and hierachical routing is needed</p>
+</section><section id="manageability" class="slide level2">
+<h1>Manageability</h1>
+<p>Lack of central management and formal procedures resulted in many cases of sub-optimal routing, such as a high number of tunnels routed over the same link.</p>
+<div class="fragment">
+<p>There was no protocol to manage information across domain boundaries, causing routing problems to spread throughout the topology.</p>
+</div>
+</section></section>
+<section><section id="interdomain-multicast" class="titleslide slide level1"><h1>Interdomain Multicast</h1></section><section class="slide level2">
+
+<p>Three main problems:</p>
+<ul>
+<li>Multicast routing</li>
+<li>Source discovery</li>
+<li>Interdomain tree construction</li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p>MBGP/PIM-SM/MSDP</p>
+</blockquote>
+</div>
+</section><section id="mbgp" class="slide level2">
+<h1>MBGP</h1>
+<p><em>Multiprotocol extensions to Border Gateway Protocol</em></p>
+<div class="fragment">
+<p>Allows multicast routing across domains by exchange of reachability information.</p>
+</div>
+<div class="fragment">
+<p>With MBGP each AS advertises the set of routes it can reach with associated costs. Border routers can compute the set of ASs to traverse to reach any given network.</p>
+</div>
+<div class="fragment">
+<p>MBGP does not carry information about groups or sources, only reachable multicast-enabled networks.</p>
+</div>
+</section><section id="msdp" class="slide level2">
+<h1>MSDP</h1>
+<p><em>Multicast Source Discovery Protocol</em></p>
+<div class="fragment">
+<p>Representatives (a RP) in each domain announce active sources.</p>
+</div>
+<div class="fragment">
+<p>Information is flooded, and each receiving peer uses RPF checks to avoid loops.</p>
+</div>
+</section><section id="pim-sm-again" class="slide level2">
+<h1>PIM-SM (again)</h1>
+<p>PIM-SM can be used in order to join multicast trees in other domain.</p>
+<div class="fragment">
+<p>A RP is needed in each AS, serving receivers within the domain.</p>
+</div>
+</section><section class="slide level2">
+
+<p>Additionally, the RP functions as a PIM receiver:</p>
+<div class="fragment">
+<p>When a source is advertised, a join message is sent towards the source if the RP has any members for the group.</p>
+</div>
+<div class="fragment">
+<p>Once data is received from the source, it is forwarded down the local shared tree.</p>
+</div>
+</section><section id="remaining-problems" class="slide level2">
+<h1>Remaining problems</h1>
+</section><section id="join-latency" class="slide level2">
+<h1>Join latency</h1>
+<p>SA messages are sent periodically, resulting in significant possible delay from a when a receiver joins to they get the first packages.</p>
+<div class="fragment">
+<p>This may be solved by having MSDP peers cache SA messages, at the cost of extra complexity.</p>
+</div>
+</section><section id="bursty-sources" class="slide level2">
+<h1>Bursty sources</h1>
+<p>Sources sending short bursts of data with several minutes of silences.</p>
+<div class="fragment">
+<p>The original packages may never reach receivers since forwarding state may not already be established.</p>
+</div>
+<div class="fragment">
+<p>Established state may be dropped between bursts due to timeouts.</p>
+</div>
+<div class="fragment">
+<p>The result is that no packets ever reach group members.</p>
+</div>
+</section><section id="scalability-1" class="slide level2">
+<h1>Scalability</h1>
+<p>MSDP may not be particularly scalable given it’s flooding strategy.</p>
+<div class="fragment">
+<p>A few thousand active sources would result in a large number of SA messages (with embedded data).</p>
+</div>
+<div class="fragment">
+<p>It was still seen as an acceptable short-term solution at the time.</p>
+</div>
+</section></section>
+<section><section id="long-term-solutions" class="titleslide slide level1"><h1>Long term solutions</h1></section><section id="bgmp" class="slide level2">
+<h1>BGMP</h1>
+<p><em>Border Gateway Multicast Protocol</em></p>
+<div class="fragment">
+<p>Based on the idea that there is a single logical root domain for every group.</p>
+</div>
+<div class="fragment">
+<p>Constructs bidirectional trees that are shared between domains and using a single root.</p>
+</div>
+<div class="fragment">
+<p>A strict address allocation scheme is needed to avoid interdomain dependencies.</p>
+</div>
+</section><section id="rama-protocols" class="slide level2">
+<h1>RAMA protocols</h1>
+<p><em>Root Addressed Multicast Architecture</em></p>
+<div class="fragment">
+<p>Attempts to make fundamental changes in the multicast model in order to address issues such as security, billing and management.</p>
+</div>
+<div class="fragment">
+<p>The premise is that most applications are single-source or have an easily identifiable primary source.</p>
+</div>
+<div class="fragment">
+<p>This source acts as the root of the tree, eliminating the need for RPs.</p>
+</div>
+</section><section id="express-multicast" class="slide level2">
+<h1>Express multicast</h1>
+<p>is a single source protocol, which places the root of the tree at the source.</p>
+<div class="fragment">
+<p>Group members send join messages along the reverse path to the source.</p>
+</div>
+<div class="fragment">
+<p>Specifically designed for subscriber-based systems, such as TV broadcasts, and allow closed groups with low routing complexity.</p>
+</div>
+</section><section id="simple-multicast" class="slide level2">
+<h1>Simple multicast</h1>
+<p>is similar to Express Multicast, but offers multiple sources per group.</p>
+<div class="fragment">
+<p>One source must be chosen as primary, and the tree is rooted at this nodes closest router.</p>
+</div>
+<div class="fragment">
+<p>Receivers send join messages to the primary, constructing a bidirectional tree.</p>
+</div>
+<div class="fragment">
+<p>Additional sources send packets towards the primary, but traffic is routed down the tree as soon as it reaches a participating router.</p>
+</div>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: 'slide', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+    <script src="d3/d3.js"></script>
+  <script src="rendering/app.js"></script>
+    </body>
+</html>

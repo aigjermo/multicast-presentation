@@ -1,0 +1,71 @@
+.graph {
+    box-shadow: none !important;
+}
+.graph .node {
+    stroke: #ddd;
+    stroke-width: 1.5px;
+}
+
+.node.source,
+.node.green {
+    fill: #2ca02c;
+}
+.node.member,
+.node.blue {
+    fill: #1f77b4;
+}
+.node.orange {
+    fill: #ff7f0e;
+}
+.node.core,
+.node.red {
+    fill: #ff7f0e;
+}
+.node.other {
+    fill: #555;
+}
+
+.link {
+    stroke-opacity: .6;
+}
+
+.link.no {
+    stroke: #999;
+}
+.link.ip {
+    stroke: #1f77b4;
+    stroke-width: 2px;
+}
+.link.ov {
+    stroke: #1f77b4;
+    stroke-width: 1px;
+}
+.link.ap {
+    stroke: #ff7f0e;
+    stroke-width: 2px;
+}
+
+.graph .tunnel {
+    stroke: #ff7f0e;
+    stroke-width: 2px;
+    stroke-dasharray: 5,5;
+}
+
+.tunnel.source,
+.tunnel.green {
+    stroke: #2ca02c;
+}
+.tunnel.member,
+.tunnel.blue {
+    stroke: #1f77b4;
+}
+.tunnel.orange {
+    stroke: #ff7f0e;
+}
+.tunnel.core,
+.tunnel.red {
+    stroke: #ff7f0e;
+}
+.tunnel.other {
+    stroke: #555;
+}
