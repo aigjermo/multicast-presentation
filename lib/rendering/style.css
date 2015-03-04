@@ -1,3 +1,6 @@
+.graph {
+    box-shadow: none !important;
+}
 .graph .node {
     stroke: #ddd;
     stroke-width: 1.5px;
