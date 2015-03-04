@@ -1,0 +1,44 @@
+.graph .node {
+    stroke: #ddd;
+    stroke-width: 1.5px;
+}
+
+.node.source {
+    fill: #2ca02c;
+}
+.node.member {
+    fill: #1f77b4;
+}
+.node.core {
+    fill: #ff7f0e;
+}
+.node.other {
+    fill: #555;
+}
+
+.graph .link {
+    stroke-opacity: .8;
+}
+
+.graph .link.no {
+    stroke: #999;
+}
+.graph .link.ip {
+    stroke: #1f77b4;
+    stroke-width: 2px;
+}
+.graph .link.ov {
+    stroke: #1f77b4;
+    stroke-width: 1px;
+}
+.graph .link.ap {
+    stroke: #ff7f0e;
+    stroke-width: 2px;
+}
+.graph .link.tun {
+    stroke-dasharray: 5,5;
+}
+.graph .link.dbl {
+    stroke-dasharray: 5,5;
+    stroke: #ff1f0e;
+}

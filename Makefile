@@ -75,7 +75,7 @@ SRC_DIR = src
 BIN_DIR = bin
 
 PANDOC_OPTS_IN =
-PANDOC_OPTS_OUT = -s
+PANDOC_OPTS_OUT = -s --css=rendering/style.css
 
 COPY_LIBS =
 
@@ -105,9 +105,9 @@ endif
 
 ifdef REVEALJS
   PANDOC_OPTS_OUT += -t revealjs
-  COPY_LIBS += reveal.js
+  COPY_LIBS += reveal.js d3 rendering
   ifdef SLIDETHEME
-	PANDOC_OPTS_OUT += --css=../lib/reveal.js/css/theme/$(SLIDETHEME).css
+	PANDOC_OPTS_OUT += --css=reveal.js/css/theme/$(SLIDETHEME).css
   endif
 endif
 
