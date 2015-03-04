@@ -3,35 +3,41 @@
     stroke-width: 1.5px;
 }
 
-.node.source {
+.node.source,
+.node.green {
     fill: #2ca02c;
 }
-.node.member {
+.node.member,
+.node.blue {
     fill: #1f77b4;
 }
-.node.core {
+.node.orange {
+    fill: #ff7f0e;
+}
+.node.core,
+.node.red {
     fill: #ff7f0e;
 }
 .node.other {
     fill: #555;
 }
 
-.graph .link {
-    stroke-opacity: .8;
+.link {
+    stroke-opacity: .6;
 }
 
-.graph .link.no {
+.link.no {
     stroke: #999;
 }
-.graph .link.ip {
+.link.ip {
     stroke: #1f77b4;
     stroke-width: 2px;
 }
-.graph .link.ov {
+.link.ov {
     stroke: #1f77b4;
     stroke-width: 1px;
 }
-.graph .link.ap {
+.link.ap {
     stroke: #ff7f0e;
     stroke-width: 2px;
 }
@@ -40,4 +46,23 @@
     stroke: #ff7f0e;
     stroke-width: 2px;
     stroke-dasharray: 5,5;
+}
+
+.tunnel.source,
+.tunnel.green {
+    stroke: #2ca02c;
+}
+.tunnel.member,
+.tunnel.blue {
+    stroke: #1f77b4;
+}
+.tunnel.orange {
+    stroke: #ff7f0e;
+}
+.tunnel.core,
+.tunnel.red {
+    stroke: #ff7f0e;
+}
+.tunnel.other {
+    stroke: #555;
 }
