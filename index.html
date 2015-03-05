@@ -87,8 +87,6 @@
         { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 10, &quot;target&quot;: 11 }
     ],
     &quot;tunnels&quot;: [
-        [0,1],
-        [0,7,2],
         [0,6,10,4],
         [1,2],
         [2,9,3],
@@ -470,6 +468,156 @@
 <div class="fragment">
 <p>Additional sources send packets towards the primary, but traffic is routed down the tree as soon as it reaches a participating router.</p>
 </div>
+</section></section>
+<section><section id="layers-of-multicast" class="titleslide slide level1"><h1>Layers of multicast</h1></section><section id="ip-multicast" class="slide level2">
+<h1>IP multicast</h1>
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;orange&quot;, &quot;count&quot;: 4 },
+        { &quot;type&quot;: &quot;member&quot;, &quot;count&quot;: 6 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 0, &quot;target&quot;: 5 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 4, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 4, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 5, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 5, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 6, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 7, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;ip&quot;, &quot;source&quot;: 8, &quot;target&quot;: 9 }
+    ],
+    &quot;tunnels&quot;: [
+    ]
+}</code></pre>
+</section><section class="slide level2">
+
+<p>DVMRP, MOSPF, PIM-DM/SM, CBT</p>
+<div class="fragment">
+<p>“Native multicast”</p>
+</div>
+<div class="fragment">
+<p>High cost of deployment</p>
+</div>
+</section><section id="application-layer" class="slide level2">
+<h1>Application layer</h1>
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;orange&quot;, &quot;count&quot;: 4 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 6 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 5 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 7, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 9 }
+    ],
+    &quot;tunnels&quot;: [
+        [0,6,4,3],
+        [1,7,4,3],
+        [2,7,1]
+    ]
+}</code></pre>
+</section><section class="slide level2">
+
+<p>End System Multicast, NICE, ALMI</p>
+<div class="fragment">
+<p>Offers ease of deployment and moves intelligence to the edge of the network.</p>
+</div>
+</section><section id="overlay-multicast" class="slide level2">
+<h1>Overlay multicast</h1>
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;orange&quot;, &quot;count&quot;: 4 },
+        { &quot;type&quot;: &quot;member&quot;, &quot;count&quot;: 2 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 4 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 5 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 7, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 9 }
+    ],
+    &quot;tunnels&quot;: [
+        [4,7,1],
+        [4,3],
+        [4,6,5],
+        [5,0],
+        [5,9,2]
+    ]
+}</code></pre>
+</section><section class="slide level2">
+
+<p>Scattercast, Overcast, RMX, AMCast, OMNI</p>
+<div class="fragment">
+<p>Somewhere between, where some nodes act as gateways</p>
+</div>
+<div class="fragment">
+<p>Offers more flexibility and lower cost of deployment than IP.</p>
+</div>
+</section><section id="comparison" class="slide level2">
+<h1>Comparison</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: center;">IP</th>
+<th style="text-align: center;">ALM</th>
+<th style="text-align: center;">OM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ease of deployment</td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">medium</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Multicast efficiency</td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">medium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Control overhead</td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">medium</td>
+</tr>
+</tbody>
+</table>
 </section></section>
     </div>
   </div>
