@@ -206,7 +206,7 @@
 </section></section>
 <section><section id="section-3" class="titleslide slide level1"><h1>1998</h1></section><section id="the-problem-with-dense-mode-protocols" class="slide level2">
 <h1>The problem with dense mode protocols</h1>
-<p>becomes obvious when MBone is flooded with tens of gigabits of traffic during a Internet2 member meeting in San Francisco.</p>
+<p>becomes obvious when MBone is flooded with tens of gigabits of traffic during an Internet2 member meeting in San Francisco.</p>
 <aside class="notes">
 <p>“Everyone is interested”, DDos is a feature, shutting down links makes new ones pop up elsewhere.</p>
 </aside>
@@ -236,6 +236,42 @@
 </ul>
 </section><section class="slide level2">
 
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;core&quot;, &quot;count&quot;: 1 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 6 },
+        { &quot;type&quot;: &quot;member&quot;, &quot;count&quot;: 5 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 1 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 3 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 5 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 2 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 10, &quot;target&quot;: 11 }
+    ],
+    &quot;tunnels&quot;: [
+    ]
+}</code></pre>
+<p>PIM-SM Reverse Shortest Path Tree</p>
+</section><section class="slide level2">
+
 <p>Sending data:</p>
 <ul>
 <li class="fragment">Each source initially sends multicast data through a unicast tunnel to the RP (“register” packets)</li>
@@ -243,6 +279,46 @@
 <li class="fragment">If not, the RP may tell the source to stop transmitting</li>
 <li class="fragment">In addition, the RP may request multicast data (without tunneling) from the source.</li>
 </ul>
+</section><section class="slide level2">
+
+<pre class="graph"><code>{
+    &quot;nodes&quot;: [
+        { &quot;type&quot;: &quot;core&quot;, &quot;count&quot;: 1 },
+        { &quot;type&quot;: &quot;other&quot;, &quot;count&quot;: 6 },
+        { &quot;type&quot;: &quot;source&quot;, &quot;count&quot;: 1 },
+        { &quot;type&quot;: &quot;member&quot;, &quot;count&quot;: 4 }
+    ],
+    &quot;links&quot;: [
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 1 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 6 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 3 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 5 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 0, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 2 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 1, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 2, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 4 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 3, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 8 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 4, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 9 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 5, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 10 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 6, &quot;target&quot;: 7 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 8, &quot;target&quot;: 11 },
+        { &quot;type&quot;: &quot;no&quot;, &quot;source&quot;: 10, &quot;target&quot;: 11 }
+    ],
+    &quot;tunnels&quot;: [
+        [8,0],
+        [9,5,5,0],
+        [10,5],
+        [11,10]
+    ]
+}</code></pre>
 </section><section id="cbt" class="slide level2">
 <h1>CBT</h1>
 <p><em>Core Based Trees</em></p>
@@ -253,7 +329,7 @@
 <p>Uses a single tree for all groups, resulting in less state to maintain at the cost of less optimal trees.</p>
 </div>
 <div class="fragment">
-<p>The tree is bidirectional, meaning that traffic from source to rp can be sent down the tree by any node. This avoids the same packets traveling in both directions at the cost of slightly higher complexity.</p>
+<p>The tree is bidirectional, meaning that traffic from source to RP can be sent down the tree by any node. This avoids the same packets traveling in both directions at the cost of slightly higher complexity.</p>
 </div>
 </section></section>
 <section><section id="further-problems-with-mbone" class="titleslide slide level1"><h1>Further problems with MBone</h1></section><section class="slide level2">
@@ -323,7 +399,7 @@
 <h1>Remaining problems</h1>
 </section><section id="join-latency" class="slide level2">
 <h1>Join latency</h1>
-<p>SA messages are sent periodically, resulting in significant possible delay from a when a receiver joins to they get the first packages.</p>
+<p>SA messages are sent periodically, resulting in significant possible delay from a when a receiver joins to they get the first packets.</p>
 <div class="fragment">
 <p>This may be solved by having MSDP peers cache SA messages, at the cost of extra complexity.</p>
 </div>
@@ -331,7 +407,7 @@
 <h1>Bursty sources</h1>
 <p>Sources sending short bursts of data with several minutes of silences.</p>
 <div class="fragment">
-<p>The original packages may never reach receivers since forwarding state may not already be established.</p>
+<p>The original packets may never reach receivers since forwarding state may not yet be established.</p>
 </div>
 <div class="fragment">
 <p>Established state may be dropped between bursts due to timeouts.</p>
@@ -380,13 +456,13 @@
 <p>Group members send join messages along the reverse path to the source.</p>
 </div>
 <div class="fragment">
-<p>Specifically designed for subscriber-based systems, such as TV broadcasts, and allow closed groups with low routing complexity.</p>
+<p>Specifically designed for subscriber-based systems, such as TV broadcasts, and allows closed groups with low routing complexity.</p>
 </div>
 </section><section id="simple-multicast" class="slide level2">
 <h1>Simple multicast</h1>
 <p>is similar to Express Multicast, but offers multiple sources per group.</p>
 <div class="fragment">
-<p>One source must be chosen as primary, and the tree is rooted at this nodes closest router.</p>
+<p>One source must be chosen as primary, and the tree is rooted at this node’s closest router.</p>
 </div>
 <div class="fragment">
 <p>Receivers send join messages to the primary, constructing a bidirectional tree.</p>

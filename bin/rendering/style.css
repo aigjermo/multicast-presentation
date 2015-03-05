@@ -24,6 +24,9 @@
 .node.other {
     fill: #555;
 }
+.node.selected {
+    fill: #fff !important;
+}
 
 .link {
     stroke-opacity: .6;
