@@ -19,7 +19,7 @@
 }
 .node.core,
 .node.red {
-    fill: #ff7f0e;
+    fill: #ff5e88;
 }
 .node.other {
     fill: #555;
@@ -67,7 +67,7 @@
 }
 .tunnel.core,
 .tunnel.red {
-    stroke: #ff7f0e;
+    stroke: #ff5e88;
 }
 .tunnel.other {
     stroke: #555;
