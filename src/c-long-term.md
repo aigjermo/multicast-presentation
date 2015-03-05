@@ -49,7 +49,7 @@ Group members send join messages along the reverse path to the source.
 . . .
 
 Specifically designed for subscriber-based systems, such as TV broadcasts, and
-allow closed groups with low routing complexity.
+allows closed groups with low routing complexity.
 
 
 ## Simple multicast
@@ -58,7 +58,7 @@ is similar to Express Multicast, but offers multiple sources per group.
 
 . . .
 
-One source must be chosen as primary, and the tree is rooted at this nodes
+One source must be chosen as primary, and the tree is rooted at this node's
 closest router.
 
 . . .

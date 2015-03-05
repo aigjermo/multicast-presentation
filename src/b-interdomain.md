@@ -73,7 +73,7 @@ Once data is received from the source, it is forwarded down the local shared tre
 ## Join latency
 
 SA messages are sent periodically, resulting in significant possible delay
-from a when a receiver joins to they get the first packages.
+from a when a receiver joins to they get the first packets.
 
 . . .
 
@@ -87,8 +87,8 @@ Sources sending short bursts of data with several minutes of silences.
 
 . . .
 
-The original packages may never reach receivers since forwarding state may not
-already be established.
+The original packets may never reach receivers since forwarding state may not
+yet be established.
 
 . . .
 
