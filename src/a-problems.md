@@ -8,9 +8,11 @@ nodes in different ASs, leading to a number of problems.
 
 ## Scalability
 
-Large number of routes became a big problem for MBone, peaking at over 10k routes
+Large number of routes became a big problem for MBone, peaking at over 10k routes.
 
-To manage larger networks, route aggregation and hierachical routing is needed
+. . .
+
+To manage larger networks, route aggregation and hierachical routing is needed.
 
 ## Manageability
 

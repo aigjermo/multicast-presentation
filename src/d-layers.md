@@ -42,7 +42,7 @@ DVMRP, MOSPF, PIM-DM/SM, CBT
 
 . . .
 
-High cost of deployment
+High cost of deployment.
 
 
 ## Application layer
@@ -131,7 +131,7 @@ Scattercast, Overcast, RMX, AMCast, OMNI
 
 . . .
 
-Somewhere between, where some nodes act as gateways
+Somewhere between, where some nodes act as gateways.
 
 . . .
 
@@ -144,3 +144,5 @@ Offers more flexibility and lower cost of deployment than IP.
   Ease of deployment     low  high  medium
   Multicast efficiency   high low   medium
   Control overhead       low  high  medium
+
+

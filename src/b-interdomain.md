@@ -4,9 +4,9 @@
 
 Three main problems:
 
-* Multicast routing
-* Source discovery
-* Interdomain tree construction
+* Multicast routing,
+* Source discovery,
+* Interdomain tree construction.
 
 . . .
 
@@ -111,4 +111,5 @@ A few thousand active sources would result in a large number of SA messages
 . . .
 
 It was still seen as an acceptable short-term solution at the time.
+
 
