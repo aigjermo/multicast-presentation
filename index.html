@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Anders Iver Gjermo (ai@gjermo.com)" />
+  <meta name="dcterms.date" content="2015-03-06" />
   <title>Evolution of multicast</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -33,14 +34,14 @@
 <section>
     <h1 class="title">Evolution of multicast</h1>
     <h2 class="author">Anders Iver Gjermo (ai@gjermo.com)</h2>
-    <h3 class="date"></h3>
+    <h3 class="date">2015-03-06</h3>
 </section>
 
 <section><section id="section" class="titleslide slide level1"><h1>1988</h1></section><section id="multicast-is-old" class="slide level2">
 <h1>Multicast is old!</h1>
 </section><section id="stephen-deering" class="slide level2">
 <h1>Stephen Deering</h1>
-<p>introduces the first concrete ideas about multicast in his Ph.D. dissertation</p>
+<p>introduces the first concrete ideas about multicast in his Ph.D. dissertation.</p>
 <div class="fragment">
 <p>One year before Tim Berners-Lee’s proposals for the World Wide Web.</p>
 </div>
@@ -53,8 +54,10 @@
 </div>
 </section><section id="mrouted" class="slide level2">
 <h1><code>mrouted</code></h1>
-<p>Application layer implementation running on connected workstations</p>
-<p>Traffic is routed through unicast-encapsulated tunnels between members</p>
+<p>Application layer implementation running on connected workstations.</p>
+<div class="fragment">
+<p>Traffic is routed through unicast-encapsulated tunnels between members.</p>
+</div>
 </section><section class="slide level2">
 
 <pre class="graph"><code>{
@@ -98,19 +101,19 @@
 </section><section id="broadcast-and-prune" class="slide level2">
 <h1>“Broadcast and prune”</h1>
 <ul>
-<li class="fragment">Source sends on all interfaces</li>
-<li class="fragment">Routers do RPF checks on incoming traffic
+<li class="fragment">Source sends on all interfaces.</li>
+<li class="fragment">Routers do RPF checks on incoming traffic.
 <ul>
-<li class="fragment">Drop traffic if RPF fails</li>
-<li class="fragment">Or respond with prune msg</li>
+<li class="fragment">Drop traffic if RPF fails,</li>
+<li class="fragment">or respond with prune msg.</li>
 </ul></li>
-<li class="fragment">Edge/leaf discover group members through IGMP
+<li class="fragment">Edge/leaf discover group members through IGMP.
 <ul>
-<li class="fragment">Forward traffic to members</li>
-<li class="fragment">Or respond with prune msg</li>
+<li class="fragment">Forward traffic to members,</li>
+<li class="fragment">or respond with prune msg.</li>
 </ul></li>
-<li class="fragment">Routers receiving prune msgs on all interfaces, will forward towards source</li>
-<li class="fragment">Repeat periodically</li>
+<li class="fragment">Routers receiving prune msgs on all interfaces, will forward towards source.</li>
+<li class="fragment">Repeat periodically.</li>
 </ul>
 </section><section id="dvmrp" class="slide level2">
 <h1>DVMRP</h1>
@@ -119,19 +122,19 @@
 <p>Used broadcast and prune, but:</p>
 </div>
 <div class="fragment">
-<p>no pruning at all in the beginning, and RPF checks on neighbors to select output interfaces</p>
+<p>no pruning at all in the beginning, and RPF checks on neighbors to select output interfaces.</p>
 </div>
 </section></section>
 <section><section id="section-2" class="titleslide slide level1"><h1>1994/95</h1></section><section id="mbone-is-expanding" class="slide level2">
 <h1>MBone is expanding</h1>
 <div class="fragment">
-<p>A big concert with The Rolling Stones is broadcast</p>
+<p>A big concert with The Rolling Stones is broadcasted.</p>
 </div>
 <div class="fragment">
-<p>links appearing in Russia &amp; Antarctica</p>
+<p>links appear in Russia &amp; Antarctica.</p>
 </div>
 <div class="fragment">
-<p>Hardware support &amp; new protocols</p>
+<p>Hardware support &amp; new protocols.</p>
 </div>
 </section><section id="pim-dm" class="slide level2">
 <h1>PIM-DM</h1>
@@ -215,21 +218,24 @@
 <h1>PIM-SM</h1>
 <p><em>Protocol Independent Multicast - Sparse Mode</em></p>
 <div class="fragment">
-<p>Uses (like PIM-DM) the underlying unicast routing table, but introduces the concept of a rendezvous point (RP), or core, and requires goup members to send explicit join messages.</p>
+<p>Uses (like PIM-DM) the underlying unicast routing table, but introduces the concept of a rendezvous point (RP), or core,</p>
+</div>
+<div class="fragment">
+<p>and requires goup members to send explicit join messages.</p>
 </div>
 </section><section class="slide level2">
 
 <p>Building the receiver tree:</p>
 <ul>
-<li class="fragment">A RP is configured for each group
+<li class="fragment">A RP is configured for each group.
 <ul>
-<li class="fragment">Groups may share RP, but each group can only have one</li>
-<li class="fragment">RPs must be discovered by all routers through a bootstrap protocol</li>
+<li class="fragment">Groups may share RP, but each group can only have one.</li>
+<li class="fragment">RPs must be discovered by all routers through a bootstrap protocol.</li>
 </ul></li>
-<li class="fragment">Receivers send join messages to the RP.
+<li class="fragment">Receivers send join messages to the RP..
 <ul>
-<li class="fragment">Forwarding state is created at each router between the RP &amp; source</li>
-<li class="fragment">This forms a reverse shortest path three rooted at the RP</li>
+<li class="fragment">Forwarding state is created at each router between the RP &amp; source.</li>
+<li class="fragment">This forms a reverse shortest path three rooted at the RP.</li>
 </ul></li>
 </ul>
 </section><section class="slide level2">
@@ -272,9 +278,9 @@
 
 <p>Sending data:</p>
 <ul>
-<li class="fragment">Each source initially sends multicast data through a unicast tunnel to the RP (“register” packets)</li>
-<li class="fragment">If the RP have forwarding state for the group (ie receivers), data is forwarded down the tree</li>
-<li class="fragment">If not, the RP may tell the source to stop transmitting</li>
+<li class="fragment">Each source initially sends multicast data through a unicast tunnel to the RP (“register” packets).</li>
+<li class="fragment">If the RP have forwarding state for the group (ie receivers), data is forwarded down the tree.</li>
+<li class="fragment">If not, the RP may tell the source to stop transmitting.</li>
 <li class="fragment">In addition, the RP may request multicast data (without tunneling) from the source.</li>
 </ul>
 </section><section class="slide level2">
@@ -335,8 +341,10 @@
 <p>Multicast networks have had a flat topology, built out of tunnels between nodes in different ASs, leading to a number of problems.</p>
 </section><section id="scalability" class="slide level2">
 <h1>Scalability</h1>
-<p>Large number of routes became a big problem for MBone, peaking at over 10k routes</p>
-<p>To manage larger networks, route aggregation and hierachical routing is needed</p>
+<p>Large number of routes became a big problem for MBone, peaking at over 10k routes.</p>
+<div class="fragment">
+<p>To manage larger networks, route aggregation and hierachical routing is needed.</p>
+</div>
 </section><section id="manageability" class="slide level2">
 <h1>Manageability</h1>
 <p>Lack of central management and formal procedures resulted in many cases of sub-optimal routing, such as a high number of tunnels routed over the same link.</p>
@@ -348,9 +356,9 @@
 
 <p>Three main problems:</p>
 <ul>
-<li>Multicast routing</li>
-<li>Source discovery</li>
-<li>Interdomain tree construction</li>
+<li>Multicast routing,</li>
+<li>Source discovery,</li>
+<li>Interdomain tree construction.</li>
 </ul>
 <div class="fragment">
 <blockquote>
@@ -504,7 +512,7 @@
 <p>“Native multicast”</p>
 </div>
 <div class="fragment">
-<p>High cost of deployment</p>
+<p>High cost of deployment.</p>
 </div>
 </section><section id="application-layer" class="slide level2">
 <h1>Application layer</h1>
@@ -581,7 +589,7 @@
 
 <p>Scattercast, Overcast, RMX, AMCast, OMNI</p>
 <div class="fragment">
-<p>Somewhere between, where some nodes act as gateways</p>
+<p>Somewhere between, where some nodes act as gateways.</p>
 </div>
 <div class="fragment">
 <p>Offers more flexibility and lower cost of deployment than IP.</p>
