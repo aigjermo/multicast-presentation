@@ -47,7 +47,7 @@ Information is flooded, and each receiving peer uses RPF checks to avoid loops.
 
 ## PIM-SM (again)
 
-PIM-SM can be used in order to join multicast trees in other domain.
+PIM-SM can be used in order to join multicast trees in other domains.
 
 . . .
 
