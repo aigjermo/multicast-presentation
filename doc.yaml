@@ -7,7 +7,7 @@ title: Evolution of multicast
 
 author: Anders Iver Gjermo (ai@gjermo.com)
 
-#date:
+date: 2015-03-06
 
 include-after: |
     <script src="d3/d3.js"></script>
